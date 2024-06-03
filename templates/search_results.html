@@ -1,0 +1,244 @@
+<!-- templates/library/search_results.html -->
+<!-- Include this in the <head> section of your HTML -->
+   
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <style type="text/css">
+        body {
+            color: #aa082e;
+            background-color: #b6bde7;
+            font-family: 'Roboto', sans-serif;
+        }
+    
+        .form-control {
+            border-color: #eee;
+            min-height: 41px;
+            box-shadow: none !important;
+        }
+    
+        .form-control:focus {
+            border-color: #5cd3b4;
+        }
+    
+        .form-control, .btn {
+            border-radius: 3px;
+        }
+    
+        .signup-form {
+            width: 500px;
+            margin: 0 auto;
+            padding: 30px 0;
+        }
+    
+        .signup-form h2 {
+            color: #333;
+            margin: 0 0 30px 0;
+            display: inline-block;
+            padding: 0 30px 10px 0;
+            border-bottom: 3px solid #ffffff;
+        }
+    
+        .signup-form form {
+            color: #999;
+            border-radius: 3px;
+            margin-bottom: 15px;
+            background: #fff;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+        }
+    
+        .signup-form .form-group {
+            margin-bottom: 20px;
+        }
+    
+        .signup-form label {
+            font-weight: normal;
+            font-size: 13px;
+        }
+    
+        .signup-form input[type="checkbox"] {
+            margin-top: 2px;
+        }
+    
+        .signup-form .btn {
+            font-size: 16px;
+            font-weight: bold;
+            background: #161df0;
+            border: none;
+            margin-top: 20px;
+            min-width: 140px;
+        }
+    
+        .signup-form .btn:hover, .signup-form .btn:focus {
+            background: #41cba9;
+            outline: none !important;
+        }
+    
+        .signup-form a {
+            color: #2b04ff;
+            text-decoration: underline;
+        }
+    
+        .signup-form a:hover {
+            text-decoration: none;
+        }
+    
+        /* Add the following style to position the search bar at the top */
+        form.search-form {
+            text-align: center;
+            margin-top: 50px;  /* Adjust the margin as needed */
+        }
+    
+        form.search-form input {
+            width: 300px;  /* Adjust the width as needed */
+            padding: 8px;
+            font-size: 16px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    
+        form.search-form button {
+            padding: 8px 16px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+    
+</head>
+<body>
+    
+</body>
+</html><head></head>
+    
+<body>
+    <!-- <h2>Search</h2>
+
+<form method="get" action="{% url 'search_query' %}">
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+</form> -->
+
+<!-- {% if results %}
+    <h3>Search Results:</h3>
+    <ul>
+        {% for book in results %}
+            <li>{{ book.name }} by {{ book.author }} (ISBN: {{ book.isbn }})</li> -->
+            <!-- Display other book details as needed -->
+        <!-- {% endfor %}
+    </ul>
+{% else %}
+    <p>No results found.</p>
+{% endif %}  -->
+
+
+</body>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+<style media="screen">
+table.redTable {
+border: 2px solid #A40808;
+background-color: #EEE7DB;
+width: 100%;
+text-align: center;
+border-collapse: collapse;
+}
+table.redTable td, table.redTable th {
+border: 1px solid #AAAAAA;
+padding: 3px 2px;
+}
+table.redTable tbody td {
+font-size: 13px;
+}
+table.redTable tr:nth-child(even) {
+background: #F5C8BF;
+}
+table.redTable thead {
+background: #A40808;
+}
+table.redTable thead th {
+font-size: 19px;
+font-weight: bold;
+color: #FFFFFF;
+text-align: center;
+border-left: 2px solid #A40808;
+}
+table.redTable thead th:first-child {
+border-left: none;
+}
+
+table.redTable tfoot {
+font-size: 13px;
+font-weight: bold;
+color: #FFFFFF;
+background: #A40808;
+}
+table.redTable tfoot td {
+font-size: 13px;
+}
+table.redTable tfoot .links {
+text-align: right;
+}
+table.redTable tfoot .links a{
+display: inline-block;
+background: #FFFFFF;
+color: #A40808;
+padding: 2px 8px;
+border-radius: 5px;
+}
+</style>
+  </head>
+  <body>
+    {% include "navbaradmin.html" %}
+    <br>
+    <br>
+    <h3 class="p-3 mb-2 bg-primary text-white" style = 'font-size: 50px;text-align:center;'>Search Results</h3>
+{% if results %}
+<table class="redTable">
+<thead>
+<tr>
+  <th>Sl No</th>
+<th>Book Name</th>
+<th>Author</th>
+<th>Year</th>
+<th>Cover Page</th>
+<th>Discription</th>
+  <th>Category</th>
+  <th>Shelf No</th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td colspan="4" rowspan="4">
+<div class="links"></div>
+</td>
+</tr>
+</tfoot>
+<tbody>
+  {% for book in results %}
+    <tr>
+      <td>{{book.id}}</td>
+      <td>{{book.bookname}}</td>
+      <td>{{book.author}}</td>
+      <td>{{book.year}}</td>
+      <td><img src="{{ book.image.url }}" alt="Book Cover" width="80px" height="120px"></td>
+      <td>{{book.desc}}</td>
+      <td>{{book.category}}</td>
+      <td>{{book.shelfid}}</td>
+    </tr>
+  {% endfor %}
+</tbody>
+</table>
+{%else%}
+<h1>No search results</h1>
+{%endif%}
+
+
+<br><br><br><br><br><br><br><br><br>
+    {% include "footer.html" %}
+  </body>
+</html>

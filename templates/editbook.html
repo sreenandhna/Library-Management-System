@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+{% include 'navbar.html' %}
+    <div class="container">
+        <div class="jumbotron">
+            <center><h1>Update book</h1></center>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+               <h1>Edit Book</h1>
+                {% if success %}
+<div class="alert alert-success" role="alert">
+    Book details successfully added.
+<!--    <a href="adminafterlogin" class="alert-link">Go to Adminpage</a>-->
+</div>
+    {% else %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if messages %}
+                        <div class="alert alert-danger" role="alert">
+                            <ul>
+                                {% for message in messages %}
+                                    <li>{{ message }}</li>
+                            </ul>
+                        </div>
+
+                                {% endfor %}{% endif %}
+
+        <label for="bookname">Book Name:</label><br>
+        <input type="text" id="bookname" name="bookname" value="{{book.bookname}}"><br><br>
+
+        <label for="author">Author:</label><br>
+        <input type="text" id="author" name="author" value="{{book.author}}" required><br><br>
+
+        <label for="year">Year:</label><br>
+        <input type="number" id="year" name="year" value="{{book.year}}" required><br><br>
+
+    <label for="category">Category:</label><br>
+        <select id="category" name="category" required>
+            <option value="">--SELECT--</option>
+            <option value="al">Algorithms</option>
+            <option value="ai">Artificial Intelligence</option>
+            <option value="ml">Machine Learning</option>
+            <option value="pro">Programming</option>
+            <option value="net">Networking</option>
+            <option value="hr">Hardware</option>
+        </select><br><br>
+
+        <label for="image">Image:</label><br>
+        <input type="file" id="image" name="image" accept="image/*" ><br><br>
+        <input type="text" id="old_image" name="old_image" value="{{book.image}}" accept="image/*" hidden>
+
+        <label for="desc">Description:</label><br>
+        <textarea id="desc" name="desc" rows="4" cols="50"  required>{{book.desc}}</textarea><br><br>
+
+        <label for="shelfid">Shelf:</label><br>
+        <input type="number" value="{{book.shelfid}}" id="shelfid" name="shelfid" required><br><br>
+
+        <label for="publisher">Publisher:</label><br>
+        <input type="text" id="publisher" value="{{book.publisher}}" name="publisher" required><br><br>
+
+        <button type="submit" value="Submit">Update</button>
+    </form>
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

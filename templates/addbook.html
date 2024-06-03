@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+{% include 'navbar.html' %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Admin Sign Up</h1>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+               <h1>Add Book</h1>
+                {% if success %}
+<div class="alert alert-success" role="alert">
+    Book details successfully added.
+<!--    <a href="adminafterlogin" class="alert-link">Go to Adminpage</a>-->
+</div>
+    {% else %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if messages %}
+                        <div class="alert alert-danger" role="alert">
+                            <ul>
+                                {% for message in messages %}
+                                    <li>{{ message }}</li>
+                            </ul>
+                        </div>
+
+                                {% endfor %}{% endif %}
+
+        <label for="bookname">Book Name:</label><br>
+        <input type="text" id="bookname" name="bookname" required><br><br>
+
+        <label for="author">Author:</label><br>
+        <input type="text" id="author" name="author" required><br><br>
+
+        <label for="year">Year:</label><br>
+        <input type="number" id="year" name="year" required><br><br>
+
+    <label for="category">Category:</label><br>
+        <select id="category" name="category">
+            <option value="al">Algorithms</option>
+            <option value="ai">Artificial Intelligence</option>
+            <option value="ml">Machine Learning</option>
+            <option value="pro">Programming</option>
+            <option value="net">Networking</option>
+            <option value="hr">Hardware</option>
+        </select><br><br>
+
+        <label for="image">Image:</label><br>
+        <input type="file" id="image" name="image" accept="image/*" required><br><br>
+
+        <label for="desc">Description:</label><br>
+        <textarea id="desc" name="desc" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="shelfid">Shelf:</label><br>
+        <input type="number" id="shelfid" name="shelfid" required><br><br>
+
+        <label for="publisher">Publisher:</label><br>
+        <input type="text" id="publisher" name="publisher" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
